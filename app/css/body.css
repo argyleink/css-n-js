@@ -1,0 +1,7 @@
+body {
+  display:grid;
+  place-items:center;
+  grid-auto-flow:column;
+  min-height:100vh;
+  background-image: linear-gradient(120deg, hsl(142 92% 75%) 0, hsl(200 82% 76%) 100%)
+}
