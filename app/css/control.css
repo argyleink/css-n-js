@@ -5,4 +5,13 @@
   border-radius: 1rem;
   padding: .5rem 1rem;
   box-shadow: 0 2rem 1.5rem -1rem hsla(0, 0%, 0%, 15%);
+
+  & > p:not(:first-of-type):not(:last-of-type) {
+    text-decoration: underline;
+    text-decoration-color: hsl(142 82% 45%);
+  }
+  
+  & > p:last-child {
+    text-transform: uppercase;
+  }
 }
