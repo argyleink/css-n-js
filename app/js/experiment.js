@@ -25,3 +25,28 @@ experiments
   .forEach(styleNode({
     color: 'hsl(200 82% 15%)'
   }))
+
+const walkDomTree = (node, cb) => {
+  cb(node)
+  node = node.firstChild
+  
+  while (node) {
+    walkDomTree(node, cb)
+    node = node.nextSibling
+  }
+}
+
+// div div div div...
+experiments
+  .reduce((children, experiment) => {
+    [...experiment.children].forEach(child => 
+      walkDomTree(child, node =>
+        children.push(node)))
+    
+    return children
+  }, [])
+  .filter(child => child.nodeName === 'DIV')
+  .forEach(({style}) => 
+    Object.assign(style, {
+      paddingLeft: '1rem',
+    }))
