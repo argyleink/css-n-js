@@ -1,5 +1,5 @@
-export const assignStyle = styles => node =>
-  Object.assign(node.style, styles)
+export const assignStyle = style => node =>
+  Object.assign(node.style, style)
 
 export const directDescendants = node =>
   [...node.children]

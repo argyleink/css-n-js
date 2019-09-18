@@ -1,31 +1,31 @@
-import { assignStyle, directDescendants, byAttr, lastChild, firstChild } from './utils.js'
-
 const experiments = [...document.querySelectorAll('.🤓')]
 
 // .🤓
 experiments
-  .forEach(assignStyle({
-    fontFamily: 'sans-serif',
-    backgroundColor: 'hsl(200  100% 90%)',
-    color: 'hsl(200 82% 15%)',
-    borderRadius: '1rem',
-    padding: '.5rem 1rem',
-    boxShadow: '0 2rem 1.5rem -1rem hsla(0, 0%, 0%, 15%)',
-  }))
+  .forEach(({style}) => 
+    Object.assign(style, {
+      fontFamily: 'sans-serif',
+      backgroundColor: 'hsl(200  100% 90%)',
+      color: 'hsl(200 82% 15%)',
+      borderRadius: '1rem',
+      padding: '.5rem 1rem',
+      boxShadow: '0 2rem 1.5rem -1rem hsla(0, 0%, 0%, 15%)',
+    }))
 
 // .🤓 > h2
 experiments
-  .flatMap(directDescendants)
-  .filter(byAttr('nodeName', 'h2'))
-  .forEach(assignStyle({
-    textDecoration: 'underline',
-    textDecorationColor: 'hsl(200 82% 45%)',
-  }))
+  .flatMap(experiment => [...experiment.children])
+  .filter(child => child.nodeName === 'H2')
+  .forEach(({style}) =>
+    Object.assign(style, {
+      textDecoration: 'underline',
+      textDecorationColor: 'hsl(200 82% 45%)',
+    }))
 
 // .🤓 > p:not(:first-of-type):not(:last-of-type)
 experiments
-  .flatMap(directDescendants)
-  .filter(byAttr('nodeName', 'p'))
+  .flatMap(experiment => [...experiment.children])
+  .filter(child => child.nodeName === 'P')
   .map(node => {
     const {0:first, length:l, [l - 1]:last} = 
       [...node.parentElement.children]
@@ -36,16 +36,18 @@ experiments
   .filter(({node, first, last}) =>
     node !== first && node !== last)
   .map(({node}) => node)
-  .forEach(assignStyle({
-    textDecoration: 'underline',
-    textDecorationColor: 'hsl(200 82% 45%)',
-  }))
+  .forEach(({style}) => 
+    Object.assign(style, {
+      textDecoration: 'underline',
+      textDecorationColor: 'hsl(200 82% 45%)',
+    }))
 
 // .🤓 > p:last-child
 experiments
-  .flatMap(directDescendants)
-  .filter(byAttr('nodeName', 'p'))
-  .filter(lastChild)
-  .forEach(assignStyle({
-    textTransform: 'uppercase',
-  }))
+  .flatMap(experiment => [...experiment.children])
+  .filter(child => child.nodeName === 'P')
+  .filter(node => !node.nextElementSibling)
+  .forEach(({style}) => 
+    Object.assign(style, {
+      textTransform: 'uppercase',
+    }))
