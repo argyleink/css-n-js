@@ -11,11 +11,11 @@ experiments
   .forEach(assignStyle({
     fontFamily: 'sans-serif',
     fontSize: '2rem',
-    backgroundColor: 'hsl(200  100% 90%)',
+    backgroundColor: 'hsl(200 100% 90%)',
     color: 'hsl(200 82% 15%)',
     borderRadius: '1rem',
     padding: '1.5rem',
-    boxShadow: '0 2rem 1.5rem -1rem hsla(0, 0%, 0%, 15%)',
+    boxShadow: '0 2rem 1.5rem -1rem hsla(0 0% 0% / 15%)',
   }))
 
 // .🤓 > h2
