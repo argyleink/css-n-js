@@ -1,14 +1,17 @@
-export const styleNode = style => node => 
+export const assignStyle = style => node =>
   Object.assign(node.style, style)
 
 export const directDescendants = node =>
   [...node.children]
 
-export const byNodeName = type => node =>
-  node.nodeName === type.toUpperCase()
+export const byAttr = (attr, val) => node =>
+  node[attr] === val.toUpperCase()
 
-export const lastChild = node => 
+export const lastChild = node =>
   !node.nextElementSibling
+
+export const firstChild = node =>
+  !node.prevElementSibling
 
 export const walkDomTree = (node, cb) => {
   cb(node)
