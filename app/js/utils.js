@@ -9,3 +9,13 @@ export const byNodeName = type => node =>
 
 export const lastChild = node => 
   !node.nextElementSibling
+
+export const walkDomTree = (node, cb) => {
+  cb(node)
+  node = node.firstChild
+  
+  while (node) {
+    walkDomTree(node, cb)
+    node = node.nextSibling
+  }
+}

@@ -1,4 +1,7 @@
-import { styleNode, directDescendants, byNodeName, lastChild } from './utils.js'
+import { 
+  styleNode, directDescendants, 
+  byNodeName, lastChild, walkDomTree
+} from './utils.js'
 
 const experiments = [...document.querySelectorAll('.🤓')]
 
@@ -13,28 +16,11 @@ experiments.forEach(styleNode({
 
 experiments
   .flatMap(directDescendants)
-  .filter(byNodeName('h2'))
+  .filter(byAttr('nodeName', 'h2'))
   .forEach(styleNode({
-    color: 'hsl(200 82% 15%)'
+    color: 'hsl(200 82% 15%)',
+    margin: 0,
   }))
-
-experiments
-  .flatMap(directDescendants)
-  .filter(byNodeName('p'))
-  .filter(lastChild)
-  .forEach(styleNode({
-    color: 'hsl(200 82% 15%)'
-  }))
-
-const walkDomTree = (node, cb) => {
-  cb(node)
-  node = node.firstChild
-  
-  while (node) {
-    walkDomTree(node, cb)
-    node = node.nextSibling
-  }
-}
 
 // div div div div...
 experiments
@@ -45,8 +31,9 @@ experiments
     
     return children
   }, [])
-  .filter(child => child.nodeName === 'DIV')
+  .filter(byAttr('nodeName', 'div'))
   .forEach(({style}) => 
     Object.assign(style, {
       paddingLeft: '1rem',
+      fontSize: '.75em',
     }))
