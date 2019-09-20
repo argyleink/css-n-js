@@ -4,7 +4,7 @@
   background-color: hsl(142 100% 90%);
   color: hsl(142 82% 15%);
   border-radius: 1rem;
-  padding: .5rem 1rem;
+  padding: 1.5rem;
   box-shadow: 0 2rem 1.5rem -1rem hsla(0, 0%, 0%, 15%);
 
   & > h2 {

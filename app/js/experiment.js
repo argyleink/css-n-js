@@ -14,7 +14,7 @@ experiments
     backgroundColor: 'hsl(200  100% 90%)',
     color: 'hsl(200 82% 15%)',
     borderRadius: '1rem',
-    padding: '.5rem 1rem',
+    padding: '1.5rem',
     boxShadow: '0 2rem 1.5rem -1rem hsla(0, 0%, 0%, 15%)',
   }))
 
@@ -23,7 +23,6 @@ experiments
   .flatMap(directDescendants)
   .filter(byAttr('nodeName', 'h2'))
   .forEach(assignStyle({
-    color: 'hsl(200 82% 15%)',
     margin: 0,
   }))
 
