@@ -1,6 +1,6 @@
 import { 
   assignStyle, directDescendants, byAttr, 
-  lastChild, firstChild, walkDomTree 
+  lastChild, firstChild, totalDescendants, 
 } from './utils.js'
 
 
@@ -28,13 +28,7 @@ experiments
 
 // div div div div...
 experiments
-  .reduce((children, experiment) => {
-    [...experiment.children].forEach(child => 
-      walkDomTree(child, node =>
-        children.push(node)))
-    
-    return children
-  }, [])
+  .flatMap(totalDescendants)
   .filter(byAttr('nodeName', 'div'))
   .forEach(assignStyle({
     paddingLeft: '1rem',

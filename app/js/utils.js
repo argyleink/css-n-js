@@ -4,6 +4,16 @@ export const assignStyle = style => node =>
 export const directDescendants = node =>
   [...node.children]
 
+export const totalDescendants = node => {
+  const collectChildren = (total, child) => 
+    child.children.length
+      ? [...child.children].reduce(
+          collectChildren, [...total, ...child.children])
+      : total
+
+  return collectChildren([], node)
+}
+
 export const byAttr = (attr, val) => node =>
   node[attr] === val.toUpperCase()
 
@@ -12,13 +22,3 @@ export const lastChild = node =>
 
 export const firstChild = node =>
   !node.prevElementSibling
-
-export const walkDomTree = (node, cb) => {
-  cb(node)
-  node = node.firstChild
-  
-  while (node) {
-    walkDomTree(node, cb)
-    node = node.nextSibling
-  }
-}
