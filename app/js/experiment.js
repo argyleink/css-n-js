@@ -30,7 +30,7 @@ experiments
 // .🤓 ... div
 // .🤓 ... ... div
 experiments
-  .flatMap(totalDescendants)
+  .reduce(totalDescendants, [])
   .filter(byAttr('nodeName', 'div'))
   .forEach(assignStyle({
     paddingLeft: '1rem',
