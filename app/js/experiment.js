@@ -26,7 +26,9 @@ experiments
     margin: 0,
   }))
 
-// div div div div...
+// .🤓 div
+// .🤓 ... div
+// .🤓 ... ... div
 experiments
   .flatMap(totalDescendants)
   .filter(byAttr('nodeName', 'div'))
